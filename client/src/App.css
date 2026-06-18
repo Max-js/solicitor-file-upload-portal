@@ -1,0 +1,117 @@
+:root {
+  --bg: #fafafa;
+  --fg: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #e2e2e2;
+  --accent: #1f3a3d;
+  --err: #9c2b2b;
+  --ok: #2a6b3a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+.app { max-width: 960px; margin: 0 auto; padding: 24px; }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+.nav .brand { font-weight: 600; }
+.nav nav { display: flex; gap: 8px; }
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+.nav a:hover { color: var(--fg); background: #f0f0f0; }
+
+.page > h1 { font-size: 22px; margin: 0 0 16px; }
+.page section { margin-top: 32px; }
+.page section h2, .upload h2 { font-size: 16px; margin: 0 0 12px; }
+
+.field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.field > span { font-size: 13px; color: var(--muted); }
+.field select {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: white;
+}
+
+.upload {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.upload input[type="file"] { font-size: 14px; }
+
+button {
+  font: inherit;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+th, td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+th {
+  background: #f5f5f5;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+tr:last-child td { border-bottom: none; }
+
+.muted { color: var(--muted); }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+.msg { margin: 0; font-size: 13px; }
+.msg.ok { color: var(--ok); }
+.msg.err { color: var(--err); }
+
+.upload {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-btn {
+  align-self: flex-end;
+  color: #ffffff;
+  background-color: #128818;
+}

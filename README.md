@@ -1,26 +1,29 @@
 # Architecture and Design:
 
-Database:  
-    - Two database tables: `clients` and `documents`  
-        - Each client has many documents, each document has one client  
-    - Documents table stores typical document data such as size, doc type, and status, as well as a `storage_key` that is the pointer to the phyiscal file which gets stored on disk  
-    - Currently, each build will attempt to insert the "default" user for the sake of quickly spinning up and testing the project. I have included an `ON CONFLICT` clause to prevent duplicate-key errors if this gets built more than once.  
+Database:
 
-API:  
-    - This is a small REST API with 3 endpoints:  
-        - POST api/documents  
-        - GET api/documents  
-        - GET api/client  
-    - POST to api/documents stores the uploaded file to disk, and writes its metadata to a row in the database  
-    - GET api/documents retrieves documents to show on both the dashboard and admin views. For the dashboard, it takes a clientId param to scope the docs to one client, and for the admin it is scoped to all documents.  
-    - GET api/client allows us to retrieve a client's information by their email address  
+- Two database tables: `clients` and `documents`
+  - Each client has many documents, each document has one client
+- Documents table stores typical document data such as size, doc type, and status, as well as a `storage_key` that is the pointer to the phyiscal file which gets stored on disk
+- Currently, each build will attempt to insert the "default" user for the sake of quickly spinning up and testing the project. I have included an `ON CONFLICT` clause to prevent duplicate-key errors if this gets built more than once.
 
-Client:  
-    - React-router's BrowserRouter is used to create a 1 page app which can toggle between client dashboard and solicitor admin  
-    - Dashboard view allows clients to upload documents, and see a table of their uploads
-    - Admin view allows solicitors to view uploads, and their status  
-    - Backend calls are routed through `api.ts`, which is proxied to the Go server on `:3000` so we don't have to worry about CORS at this time 
-    - The "default" user's email is hardcoded, to mock a "logged in" state. This is then used to fetch the client's data from the backend for use in doc upload / display of uploaded docs.  
+API:
+
+- This is a small REST API with 3 endpoints:
+  - POST api/documents
+  - GET api/documents
+  - GET api/client
+- POST to api/documents stores the uploaded file to disk, and writes its metadata to a row in the database
+- GET api/documents retrieves documents to show on both the dashboard and admin views. For the dashboard, it takes a clientId param to scope the docs to one client, and for the admin it is scoped to all documents.
+- GET api/client allows us to retrieve a client's information by their email address
+
+Client:
+
+- React-router's BrowserRouter is used to create a 1 page app which can toggle between client dashboard and solicitor admin
+- Dashboard view allows clients to upload documents, and see a table of their uploads
+- Admin view allows solicitors to view uploads, and their status
+- Backend calls are routed through `api.ts`, which is proxied to the Go server on `:3000` so we don't have to worry about CORS at this time
+- The "default" user's email is hardcoded, to mock a "logged in" state. This is then used to fetch the client's data from the backend for use in doc upload / display of uploaded docs.
 
 # Assumptions & Trade-offs:  
 
